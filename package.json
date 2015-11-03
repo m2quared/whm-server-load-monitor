@@ -1,0 +1,25 @@
+{
+  "name": "whm-server-load-monitor",
+  "version": "1.0.0",
+  "description": "Display live server load from WHM",
+  "main": "./main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-packager . WHMServerLoad --platform=darwin --arch=all --version=0.34.1 --overwrite"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-packager": "^5.1.0"
+  },
+  "dependencies": {
+    "cpanel-lib": "git://github.com/vially/cpanel-lib.git#master",
+    "moment": "^2.10.6",
+    "native-app": "^1.0.2",
+    "node-notifier": "^4.3.1",
+    "opener": "^1.4.1",
+    "path": "^0.12.7",
+    "request": "^2.65.0"
+  }
+}
