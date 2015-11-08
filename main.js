@@ -5,6 +5,7 @@ var Tray     = require('tray');
 var Menu     = require('menu');
 var path     = require('path');
 var cpanel   = require('cpanel-lib');
+var BrowserWindow = require('browser-window');
 
 var load, tid, appIcon;
 var show = 'one';
@@ -48,6 +49,11 @@ app.on('ready', function() {
         type: 'separator'
     },
     {
+        label: 'Settings',
+        click: function() { openSettingsWindow(); },
+        type: 'normal'
+    },
+    {
         label: 'Quit',
         selector: 'terminate:'
     },
@@ -62,6 +68,28 @@ app.on('ready', function() {
 
     ping();
 });
+
+var settingsWindow = null;
+
+function openSettingsWindow() {
+    if (settingsWindow) {
+        return;
+    }
+
+    settingsWindow = new BrowserWindow({
+        frame: false,
+        height: 200,
+        resizable: false,
+        width: 200
+    });
+
+    //settingsWindow.loadUrl('file://' + __dirname + '/app/settings.html');
+    settingsWindow.loadUrl('http://www.google.com');
+
+    settingsWindow.on('closed', function () {
+        settingsWindow = null;
+    });
+};
 
 function ping() {
     cpanelClient.call('loadavg', {}, function (err, res) {
